@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sup2Recettes</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenue sur Sup2Recettes!</h1>
+
+    <a href="{% url 'create_recette' %}">
+        <button>Créer une nouvelle recette</button>
+    </a>
+
+    <table id="recettesTable">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Nom de la recette</th>
+                <th>Auteur</th>
+                <th>Notes</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for recette in recettes %}
+                <tr>
+                    <td>
+                        {% if recette.imageURL %}
+                            <img src="{{ recette.imageURL }}" alt="{{ recette.nomRecette }}" style="width: 100px; height: auto;">
+                        {% endif %}
+                    </td>
+                    <td>{{ recette.nomRecette }}</td>
+                    <td>{{ recette.author }}</td>
+                    <td>{{ recette.notes }}</td>
+                    <td>
+                        <a href="{% url 'recette_detail' recette.id %}">
+                            <button>Voir la recette</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#recettesTable').DataTable();
+        });
+    </script>
+</body>
+</html>
