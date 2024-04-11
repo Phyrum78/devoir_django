@@ -8,7 +8,7 @@ Suivez ces étapes pour installer et exécuter le projet :
 
 1. Clonez le dépôt :
     ```
-    git clone lien_du_dépôt
+    git clone https://github.com/Phyrum78/devoir_django.git
     ```
 
 2. Naviguez vers le répertoire du projet :
