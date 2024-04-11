@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créer une nouvelle recette</title>
+    <title>Ajouter un commentaire</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,29 +11,22 @@
             margin: 0;
             padding: 0;
         }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
         h1 {
             text-align: center;
             color: #333;
         }
-
         form {
-            background-color: #fff;
+            max-width: 600px;
+            margin: 20px auto;
             padding: 20px;
+            background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
         label {
             font-weight: bold;
+            color: #333;
         }
-
         input[type="text"],
         textarea {
             width: 100%;
@@ -43,12 +36,6 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
-
-        /* Augmentation de la taille des zones de texte */
-        textarea {
-            height: 200px; /* Ajustez cette valeur selon vos préférences */
-        }
-
         input[type="submit"] {
             background-color: #4CAF50;
             color: white;
@@ -59,30 +46,22 @@
             cursor: pointer;
             width: 100%;
         }
-
         input[type="submit"]:hover {
             background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <h1>Créer une nouvelle recette</h1>
+    <h1>Ajouter un commentaire</h1>
 
     <form method="post">
         {% csrf_token %}
-        <label for="nomRecette">Nom de la recette:</label><br>
-        <input type="text" id="nomRecette" name="nomRecette"><br>
-        <label for="ingredients">Ingrédients:</label><br>
-        <textarea id="ingredients" name="ingredients"></textarea><br>
-        <label for="etapes">Étapes:</label><br>
-        <textarea id="etapes" name="etapes"></textarea><br>
-        <label for="author">Auteur:</label><br>
-        <input type="text" id="author" name="author"><br>
-        <label for="imageURL">URL de l'image:</label><br>
-        <input type="text" id="imageURL" name="imageURL"><br>
-        <label for="notes">Notes:</label><br>
-        <textarea id="notes" name="notes"></textarea><br>
-        <input type="submit" value="Créer la recette">
+        <label for="name">Votre nom :</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <label for="comment">Votre commentaire :</label><br>
+        <textarea id="comment" name="comment" required></textarea><br>
+        <input type="submit" value="Poster le commentaire">
     </form>
+
 </body>
 </html>

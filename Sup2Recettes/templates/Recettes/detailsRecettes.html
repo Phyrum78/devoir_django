@@ -5,30 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails de la recette</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
         .recette-detail {
-            width: 80%;
-            margin: 0 auto;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .recette-detail img {
             width: 100%;
             height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
         .recette-detail h2 {
-            font-size: 2em;
-            margin: 0.67em 0;
+            font-size: 24px;
+            margin: 0;
+            color: #333;
+        }
+        .recette-detail p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .recette-detail strong {
+            font-weight: bold;
+            color: #333;
+        }
+        .etapes {
+            white-space: pre-line;
+        }
+        .ingredients {
+            white-space: pre-line;
         }
     </style>
 </head>
 <body>
-    <h1>Détails de la recette</h1>
+    <h1 style="text-align: center;">Détails de la recette</h1>
 
     <div class="recette-detail">
         <h2>{{ recette.nomRecette }}</h2>
         <img src="{{ recette.imageURL }}" alt="{{ recette.nomRecette }}">
-        <p><strong>Ingrédients :</strong> {{ recette.ingredients }}</p>
-        <p><strong>Étapes :</strong> {{ recette.etapes }}</p>
+        <p><strong>Ingrédients :</strong></p>
+        <p class="ingredients">{{ recette.ingredients }}</p>
+        <p><strong>Étapes :</strong></p>
+        <p class="etapes">{{ recette.etapes }}</p>
         <p><strong>Auteur :</strong> {{ recette.author }}</p>
         <p><strong>Notes :</strong> {{ recette.notes }}</p>
     </div>
+
+    <h2 style="text-align: center;">Commentaires</h2>
+    {% for comment in comments %}
+        <div class="recette-detail">
+            <h3>{{ comment.name }}</h3>
+            <p>{{ comment.comment }}</p>
+            <p>{{ comment.date_added }}</p>
+        </div>
+    {% endfor %}
+
+    <div style="text-align: center; margin: 20px;">
+        <a href="{% url 'add_comment' recette.id %}" style="text-decoration: none;">
+            <button style="background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;">
+                Ajouter un commentaire
+            </button>
+        </a>
+    </div>
+    
 </body>
 </html>
